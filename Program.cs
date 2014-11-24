@@ -9,7 +9,7 @@ namespace ConsoleElasticsearchTypeMappings
 	class Program
 	{
 		private static readonly IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
-		private const string ConnectionString = "http://localhost.fiddler:9200";
+		private const string ConnectionString = "http://localhost:9200";
 
 		static void Main(string[] args)
 		{
@@ -92,7 +92,7 @@ namespace ConsoleElasticsearchTypeMappings
 		[ElasticsearchInteger]
 		public short SmallAmount { get; set; }
 
-		[ElasticsearchString(Boost = 1.4, Fields = typeof(FieldDataDef), Index = StringIndex.analyzed)]
+		[ElasticsearchString(Boost = 1.4, Fields = typeof(FieldDataDefNotAnalyzed), Index = StringIndex.analyzed)]
 		public string DescriptionBothAnayzedAndNotAnalyzed { get; set; }
 
 		[ElasticsearchDouble(Boost = 2.0,Store=true)]
@@ -106,7 +106,7 @@ namespace ConsoleElasticsearchTypeMappings
 
 	}
 
-	public class FieldDataDef
+	public class FieldDataDefNotAnalyzed
 	{
 		[ElasticsearchString(Index = StringIndex.not_analyzed)]
 		public string Raw { get; set; }
