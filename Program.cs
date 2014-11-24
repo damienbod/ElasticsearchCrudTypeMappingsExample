@@ -1,13 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Text;
 using ElasticsearchCRUD;
 using ElasticsearchCRUD.ContextAddDeleteUpdate.CoreTypeAttributes;
 using ElasticsearchCRUD.Tracing;
 
 namespace ConsoleElasticsearchTypeMappings
-{
-	
+{	
 	class Program
 	{
 		private static readonly IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
@@ -56,7 +54,7 @@ namespace ConsoleElasticsearchTypeMappings
 				// We expect no result here because we copied no valuefrom Description to data
 				var doc2 = context.Search<AmazingThisMapping>(BuildSearch("Description"));
 				Console.WriteLine("Should be 1 Found:" + doc.PayloadResult.Count);
-				Console.WriteLine("Should be 0 Found:" + doc.PayloadResult.Count);
+				Console.WriteLine("Should be 0 Found:" + doc2.PayloadResult.Count);
 			}
 
 			Console.ReadLine();
