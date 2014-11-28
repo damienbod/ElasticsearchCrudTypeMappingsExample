@@ -16,7 +16,7 @@ namespace ConsoleElasticsearchTypeMappings
 			using (var context = new ElasticsearchContext(ConnectionString, new ElasticsearchSerializerConfiguration(ElasticsearchMappingResolver)))
 			{
 				context.TraceProvider = new ConsoleTraceProvider();
-				context.CreateIndex<AmazingThisMapping>();
+				context.IndexCreate<AmazingThisMapping>();
 			}
 
 			Console.ReadLine();
