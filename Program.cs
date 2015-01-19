@@ -2,6 +2,8 @@
 using System.Text;
 using ElasticsearchCRUD;
 using ElasticsearchCRUD.ContextAddDeleteUpdate.CoreTypeAttributes;
+using ElasticsearchCRUD.Model.SearchModel;
+using ElasticsearchCRUD.Model.SearchModel.Queries;
 using ElasticsearchCRUD.Tracing;
 
 namespace ConsoleElasticsearchTypeMappings
@@ -60,18 +62,14 @@ namespace ConsoleElasticsearchTypeMappings
 			Console.ReadLine();
 		}
 
-		private static string BuildSearch(string dataText)
+		private static Search BuildSearch(string dataText)
 		{
-			var sb = new StringBuilder();
-			sb.Append("{ \"query\": {");
-			sb.Append("\"bool\": {");
-			sb.Append("\"must\": [");
-			sb.Append("{");
-			sb.Append("\"match\" : {");
-			sb.Append(" \"data\" : \"" + dataText + "\"");
-			sb.Append("}}]} }}");
-			sb.Append("");
-			return sb.ToString();
+			return new Search
+			{
+				Query = new Query(
+					new BoolQuery(
+						new MatchQuery("data", dataText)))
+			};
 		}
 	}
 
